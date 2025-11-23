@@ -24,12 +24,22 @@ python manage.py createsuperuser
 # start the server
 python manage.py runserver
 ```
- Create a `.env` file under `/backend/backend/`
+ *Optionally*, Create a `.env` file under `/backend/backend/`
  and Enter your django secret key, sample `.env`:
 ```
 SECRET_KEY_DJANGO=<YOUR_SECRET_KEY>
 ```
- 
+Then, add this to `backend/backend/settings.py`
+```
+import os
+from dotenv import load_dotenv
+
+# change
+SECRET_KEY = <YOUR_KEY>
+
+# to
+SECRET_KEY = os.getenv('SECRET_KEY_DJANGO')
+``` 
 
 ### Initalise the frontend (React)
 1. Navigate to frontend `cd main-frontend` 
@@ -40,3 +50,4 @@ SECRET_KEY_DJANGO=<YOUR_SECRET_KEY>
 ### Initalise the frontend (PyQt)
 1. Navigate to frontend `cd desktop-frontend`
 2. Run frontend app `python main.py`
+
